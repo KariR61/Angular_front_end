@@ -11,6 +11,7 @@ var app = express();
 //############################### Midlewares ##############################
 
 //Bodyparser json() middleware parses the json object from HTTp POSt request
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(function(req,res,next){
     console.log(req.method);
@@ -31,6 +32,7 @@ app.use('/FrontEnd/css',express.static(path.join(__dirname, '../FrontEnd/css')))
 app.use('/FrontEnd/lib',express.static(path.join(__dirname, '../FrontEnd/lib')));
 app.use('/FrontEnd/module',express.static(path.join(__dirname, '../FrontEnd/module')));
 app.use('/FrontEnd/controllers',express.static(path.join(__dirname, '../FrontEnd/controllers')));
+app.use('/FrontEnd/factories',express.static(path.join(__dirname, '../FrontEnd/factories')));
 
 
 //=========================================OUR REST API MIDDLEWARES======================//
