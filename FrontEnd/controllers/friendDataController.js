@@ -1,20 +1,22 @@
-main_module.controller('friendDataController',function($scope,friendDataFactory){
+main_module.controller('friendDataController',function($scope,friendDataFactory,$location){
 
     console.log('friendDataController loaded');
     
-    if(friendDataFactory.friendsArray.length === 0)
-    {
+
     
-    var response =friendDataFactory.getFriendData();
+    friendDataFactory.getFriendData(dataCallback);
     
-    response.then(function(data){
-    
-        friendDataFactory.friendsArray = data;
-        $scope.friendData = data;
-    });
+   
+    //$scope.friendData = friendDataFactory.friendsArray;
+   
+    $scope.rowCliked = function(id){
         
-    }else{
-        $scope.friendData = friendDataFactory.friendsArray;
+        friendDataFactory.selected_id = id;
+        $location.path('/edit').replace();
     }
     
+     function dataCallback(dataArray){
+        
+        $scope.friendData = dataArray;
+    }
 });
