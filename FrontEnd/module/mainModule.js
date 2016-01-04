@@ -2,6 +2,27 @@
 //the '[] array' contains the dependencies to other angular modules
 var main_module = angular.module('main_module',['ngRoute','ngResource','flash']);
 
+//This function will check if user is logged in or not. this function is used
+//in the router below in resolve attribute
+function loginRequired($q,$resource,$location){
+
+    //create a promise
+    var deferred = $q.defer();
+    $resource('/isLogged').query().$promise.then(function success(){
+        //Mark the promise to be solved (or resolved)
+        deferred.resolve();
+        return deferred;
+        
+    },function fail(){
+        
+        //Mark promise to be failed
+        deferred.reject();
+        //Go back to root context
+        $location.path('/');
+        return deferred;
+    });
+    
+}
 
 //Create basic configuration for our angular app.
 //Configuration includes USUALLY a router for our views.
@@ -14,22 +35,26 @@ main_module.config(function($routeProvider){
         controller:'controllerLogin'
     }).when('/list',{
         templateUrl:'partial_dataView.html',
-        controller:'friendDataController'
+        controller:'friendDataController',
+        resolve:{loginRequired:loginRequired}
     
     }).when('/edit',{
         
         templateUrl:'partial_editView.html',
         controller:'editController'
+        resolve:{loginRequired:loginRequired}
              
     }).when('/delete',{
         
         templateUrl:'partial_deleteView.html',
         controller:'deleteController'
+        resolve:{loginRequired:loginRequired}
            
     }).when('/insert',{
         
         templateUrl:'partial_addView.html',
         controller:'addController'
+        resolve:{loginRequired:loginRequired}
     });
     
 });
