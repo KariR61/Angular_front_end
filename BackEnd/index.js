@@ -79,7 +79,7 @@ app.get('/logout',function(req,res){
 //});
 
 app.use(function(req,res,next){
-    
+    console.log(req.path);
     var token = req.body.token || req.query.token || req.headers['x-access-token'];
     
     //Check if there was a token
@@ -92,8 +92,8 @@ app.use(function(req,res,next){
                 return res.send(401);
             }else{
                 req.decoded = decoded;
-                console.log(req.decoded);
-                next;
+                //console.log(req.decoded);
+                next();
             }
         });
         }else{
@@ -130,6 +130,7 @@ app.use('/persons',person);
 
 //this router checks if client is logged in or not
 app.get('/isLogged',function(req,res){
+    console.log(req.session.kayttaja);
     //User is logged in if session contains kayttaja attribute 
     if(req.session.kayttaja){
         res.status(200).send([{status:'OK'}]);
@@ -158,12 +159,12 @@ app.get("/css/styles.css",function(req,res){
 });
 */
 
-app.get("/persons",function(req,res){
+//app.get("/persons",function(req,res){
          
-        queries.getAllPersons(req,res);
+       // queries.getAllPersons(req,res);
     
          //res.send("Hello person there!");
-});
+//});
 /*
 app.post("/persons",function(req,res){
          
