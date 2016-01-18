@@ -1,5 +1,6 @@
 main_module.controller('friendDataController',function($scope,friendDataFactory,$location){
 
+    $scope.name = "by Markus Veijola";
     console.log('friendDataController loaded');
     
 

@@ -17,10 +17,39 @@
     </tbody>
 </table>
 -->
+<ng-include src ="'navbar.html'"></ng-include>
 
-<a href="/logout">Logout</a>
+
+<!--Rule 1 everything must go inside container class -->
+<div class="container">
+    <!--Rule 2 every column must be inside a row! -->
+    <div class="row">
+        
+        
+        <h1>Oma rivi</h1>
+        <p>To edit information, click the row</p>
+
+        
+        
+        
+        <!--Rule 3 columns are defined in row -->
+        <div style="background-color:red;" class="col-sm-3 col-md-2">Column1</div>
+        <div style="background-color:green;" class="col-sm-6 col-md-10">Column2</div>
+        <div style="background-color:blue;" class="col-sm-3 col-md-2">Column2</div>
+    </div>
+
+
+<!-- gridi harjoituksia ends -->
+
+<!--<a href="/logout">Logout</a>
 <a href="#/delete">Delete Information</a>
-<a href="#/insert">Insert New Friend</a>
+<a href="#/insert">Insert New Friend</a>-->
+    
+    <!--Use as element-->
+    <of-example></of-example>
+    <!--Use as attribute-->
+    <div of-example></div>
+    
 <div class='table_container'>
     <h1>Your friends...</h1>
     <p>To edit information, click the row</p>
@@ -40,4 +69,7 @@
             </tr>
         </tbody>
     </table>
+</div>
+    
+ <!--container div  viimeinen-->   
 </div>
